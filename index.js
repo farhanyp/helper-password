@@ -1,15 +1,22 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
 const port = 3000;
 
 // Set EJS sebagai view engine
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
+console.log(dirname(__dirname));
 
 // Route untuk menampilkan halaman Hello World
 app.get('/', (req, res) => {
