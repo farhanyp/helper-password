@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
+import { config } from './config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,11 +17,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-console.log(dirname(__dirname));
-
 // Route untuk menampilkan halaman Hello World
 app.get('/', (req, res) => {
-  res.render('index', { message: 'Hello, World!' });
+  res.render('index', { message: config.app_name });
 });
 
 app.post("/password", async(req, res)=>{
